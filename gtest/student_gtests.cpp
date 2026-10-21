@@ -20,7 +20,24 @@ TEST(StringFunction, strcpy) {
 }
 
 TEST(StringFunction, strncpy) {
-    EXPECT_TRUE(false);
+    char result[10];
+    EXPECT_EQ(String::strncpy(result, "hello", 3), result);
+    EXPECT_STREQ(result, "hel");
+
+    EXPECT_EQ(String::strncpy(result, "hello", 5), result);
+    EXPECT_STREQ(result, "hello");
+
+    EXPECT_EQ(String::strncpy(result, "hi", 10), result);
+    EXPECT_STREQ(result, "hi");
+
+    EXPECT_EQ(String::strncpy(result, "hello", 0), result);
+    EXPECT_STREQ(result, "");
+
+    EXPECT_EQ(String::strncpy(result, "", 3), result);
+    EXPECT_STREQ(result, "");
+
+    EXPECT_EQ(String::strncpy(result, "a", 1), result);
+    EXPECT_STREQ(result, "a");
 }
 
 TEST(StringFunction, strcat) {
