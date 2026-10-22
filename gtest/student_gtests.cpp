@@ -49,11 +49,34 @@ TEST(StringFunction, strncat) {
 }
 
 TEST(StringFunction, strcmp) {
-    EXPECT_TRUE(false);
 }
 
 TEST(StringFunction, strncmp) {
-    EXPECT_TRUE(false);
+    EXPECT_EQ(String::strcmp("abc", "abc"), 0);
+    EXPECT_EQ(String::strcmp("a", "a"), 0);
+    EXPECT_EQ(String::strcmp("", ""), 0);
+
+   
+    EXPECT_LT(String::strcmp("abc", "abd"), 0);
+    EXPECT_LT(String::strcmp("a", "b"), 0);
+    EXPECT_LT(String::strcmp("abc", "bbc"), 0);   
+
+   
+    EXPECT_GT(String::strcmp("abd", "abc"), 0);
+    EXPECT_GT(String::strcmp("b", "a"), 0);
+    EXPECT_GT(String::strcmp("bbc", "abc"), 0);
+
+  
+    EXPECT_LT(String::strcmp("ab", "abc"), 0);
+    EXPECT_GT(String::strcmp("abc", "ab"), 0);
+
+   
+    EXPECT_LT(String::strcmp("", "a"), 0);
+    EXPECT_GT(String::strcmp("a", ""), 0);
+
+   
+    EXPECT_LT(String::strcmp("a!", "a?"), 0);     
+    EXPECT_LT(String::strcmp("A", "a"), 0);  
 }
 
 TEST(StringFunction, reverse_cpy) {

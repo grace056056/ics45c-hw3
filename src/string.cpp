@@ -28,6 +28,14 @@ char *String::strncpy(char *dest, const char *src, int n){
 	return dest;
 }
 
+int String::strcmp(const char *left, const char *right){
+	int i=0;
+	while(left[i]==right[i] && left[i]!='\0'){
+		++i;
+	}
+	return left[i]-right[i];
+}
+
 String::String(const char *s){
 	strncpy(buf, s, MAXLEN-1);
 }
