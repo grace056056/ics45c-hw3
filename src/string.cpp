@@ -158,3 +158,40 @@ ostream &operator<<(ostream &out, const String &s){
 	s.print(out);
 	return out;
 }
+
+String &String::operator+=(const String &s){
+    int len = strlen(buf);
+    int slen = strlen(s.buf);
+    int room = MAXLEN - 1 - len;
+    if (slen > room){
+        cout << "ERROR: String Capacity Exceeded" << endl;
+        strncat(buf, s.buf, room);
+    }
+    else
+        strncat(buf, s.buf, slen);
+    return *this;
+}
+
+String String::operator+(const String &s) const {
+    String result(*this);
+    result += s;
+    return result;
+}
+
+char &String::operator[](int index){
+    if (!in_bounds(index)){
+        cout << "ERROR: Index Out Of Bounds" << endl;
+        return buf[0];
+    }
+    return buf[index];
+}
+
+void String::read(istream &in){
+    in.width(MAXLEN);
+    in >> buf;
+}
+
+istream &operator>>(istream &in, String &s){
+    s.read(in);
+    return in;
+}
