@@ -109,7 +109,7 @@ TEST(StringFunction, strncat) {
     EXPECT_STREQ(r7, "ab");
 }
 
-TEST(StringFunction, strcmp) {
+TEST(StringFunction, strncmp) {
        EXPECT_EQ(String::strncmp("abcx", "abcy", 3), 0);
        EXPECT_LT(String::strncmp("abcx", "abcy", 4), 0);
        EXPECT_GT(String::strncmp("abcy", "abcx", 4), 0);
@@ -121,7 +121,7 @@ TEST(StringFunction, strcmp) {
        EXPECT_GT(String::strncmp("a", "", 5), 0);
 }
 
-TEST(StringFunction, strncmp) {
+TEST(StringFunction, strcmp) {
     EXPECT_EQ(String::strcmp("abc", "abc"), 0);
     EXPECT_EQ(String::strcmp("a", "a"), 0);
     EXPECT_EQ(String::strcmp("", ""), 0);
