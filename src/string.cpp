@@ -83,7 +83,43 @@ char* String::strncat(char *dest, const char *src, int n){
 	strncpy(dest + i, src, n);
 	return dest;
 }
-	
+
+int String::indexOf(char c) const {
+    const char *p = strchr(buf, c);
+    if (p == nullptr)
+        return -1;
+    return p - buf;
+}
+
+const char *String::strchr(const char *str, char c){
+	int i = 0;
+    	for ( ; str[i] != '\0'; ++i){
+        	if (str[i] == c)
+            	return &str[i];
+    	}
+    	if (c == '\0')
+        	return &str[i];
+    	return nullptr;
+}
+
+int String::indexOf(const String &s) const {
+    const char *p = strstr(buf, s.buf);
+    if (p == nullptr)
+        return -1;
+    return p - buf;
+}
+
+const char *String::strstr(const char *haystack, const char *needle){
+    for (int i = 0; ; ++i){
+        int j = 0;
+        while (needle[j] != '\0' && haystack[i + j] == needle[j])
+            ++j;
+        if (needle[j] == '\0')
+            return &haystack[i];
+        if (haystack[i] == '\0')
+            return nullptr;
+    }
+}
 
 String::String(const char *s){
 	strncpy(buf, s, MAXLEN-1);

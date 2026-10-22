@@ -145,9 +145,39 @@ TEST(StringFunction, reverse_cpy) {
 }
 
 TEST(StringFunction, strchr) {
-    EXPECT_TRUE(false);
+    const char *s = "hello";
+    EXPECT_EQ(String::strchr(s, 'h'), s);        // first char
+    EXPECT_EQ(String::strchr(s, 'l'), s + 2);    // first of repeated char
+    EXPECT_EQ(String::strchr(s, 'o'), s + 4);    // last char
+    EXPECT_EQ(String::strchr(s, 'z'), nullptr);  // not found
+    EXPECT_EQ(String::strchr(s, '\0'), s + 5);   // finds the terminator
+
+    const char *e = "";
+    EXPECT_EQ(String::strchr(e, 'a'), nullptr);  // empty string
+    EXPECT_EQ(String::strchr(e, '\0'), e);
+
+    const char *p = "a,b!";
+    EXPECT_EQ(String::strchr(p, '!'), p + 3);    // punctuation
 }
 
 TEST(StringFunction, strstr) {
-    EXPECT_TRUE(false);
+    const char *h = "hello world";
+    EXPECT_EQ(String::strstr(h, "hello"), h);        // at the start
+    EXPECT_EQ(String::strstr(h, "world"), h + 6);    // at the end
+    EXPECT_EQ(String::strstr(h, "o"), h + 4);        // first of repeats
+    EXPECT_EQ(String::strstr(h, "lo w"), h + 3);     // middle, with space
+    EXPECT_EQ(String::strstr(h, "hello world"), h);  // whole string
+    EXPECT_EQ(String::strstr(h, "xyz"), nullptr);    // not found
+    EXPECT_EQ(String::strstr(h, "worlds"), nullptr); // runs past the end
+    EXPECT_EQ(String::strstr(h, ""), h);             // empty needle
+
+    const char *e = "";
+    EXPECT_EQ(String::strstr(e, "a"), nullptr);      // empty haystack
+    EXPECT_EQ(String::strstr(e, ""), e);             // both empty
+
+    const char *p = "aab";
+    EXPECT_EQ(String::strstr(p, "ab"), p + 1);       // partial match, then retry
+
+    const char *q = "a,b!c";
+    EXPECT_EQ(String::strstr(q, "b!"), q + 2);       // punctuation
 }
