@@ -41,11 +41,72 @@ TEST(StringFunction, strncpy) {
 }
 
 TEST(StringFunction, strcat) {
-    EXPECT_TRUE(false);
+    // normal case
+    char r1[20] = "ab";
+    EXPECT_EQ(String::strcat(r1, "cd"), r1);
+    EXPECT_STREQ(r1, "abcd");
+
+    // empty dest
+    char r2[20] = "";
+    EXPECT_EQ(String::strcat(r2, "cd"), r2);
+    EXPECT_STREQ(r2, "cd");
+
+    // empty src
+    char r3[20] = "ab";
+    EXPECT_EQ(String::strcat(r3, ""), r3);
+    EXPECT_STREQ(r3, "ab");
+
+    // both empty
+    char r4[20] = "";
+    EXPECT_EQ(String::strcat(r4, ""), r4);
+    EXPECT_STREQ(r4, "");
+
+    // one char each
+    char r5[20] = "a";
+    EXPECT_EQ(String::strcat(r5, "b"), r5);
+    EXPECT_STREQ(r5, "ab");
+
+    // punctuation
+    char r6[20] = "hi";
+    EXPECT_EQ(String::strcat(r6, ", there!"), r6);
+    EXPECT_STREQ(r6, "hi, there!");
 }
 
 TEST(StringFunction, strncat) {
-    EXPECT_TRUE(false);
+    // n smaller than src
+    char r1[20] = "ab";
+    EXPECT_EQ(String::strncat(r1, "cdef", 2), r1);
+    EXPECT_STREQ(r1, "abcd");
+
+    // n equal to src length
+    char r2[20] = "ab";
+    EXPECT_EQ(String::strncat(r2, "cdef", 4), r2);
+    EXPECT_STREQ(r2, "abcdef");
+
+    // n bigger than src
+    char r3[20] = "ab";
+    EXPECT_EQ(String::strncat(r3, "cdef", 10), r3);
+    EXPECT_STREQ(r3, "abcdef");
+
+    // n = 0
+    char r4[20] = "ab";
+    EXPECT_EQ(String::strncat(r4, "cdef", 0), r4);
+    EXPECT_STREQ(r4, "ab");
+
+    // n = 1
+    char r5[20] = "ab";
+    EXPECT_EQ(String::strncat(r5, "cdef", 1), r5);
+    EXPECT_STREQ(r5, "abc");
+
+    // empty dest
+    char r6[20] = "";
+    EXPECT_EQ(String::strncat(r6, "cdef", 2), r6);
+    EXPECT_STREQ(r6, "cd");
+
+    // empty src
+    char r7[20] = "ab";
+    EXPECT_EQ(String::strncat(r7, "", 3), r7);
+    EXPECT_STREQ(r7, "ab");
 }
 
 TEST(StringFunction, strcmp) {

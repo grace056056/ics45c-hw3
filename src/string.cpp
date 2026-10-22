@@ -40,7 +40,7 @@ int String::strlen(const char *s){
 	return len;
 }
 
-char *String::strcpy(char *dest, const char *src){
+char* String::strcpy(char *dest, const char *src){
 	 int i = 0;
 	 for( ; src[i]!='\0';++i){
 	 	dest[i]=src[i];
@@ -49,7 +49,7 @@ char *String::strcpy(char *dest, const char *src){
 	 return dest;
 }
 
-char *String::strncpy(char *dest, const char *src, int n){
+char* String::strncpy(char *dest, const char *src, int n){
 	int i = 0;
 	for( ; src[i]!='\0'&&i<n; ++i){
 		dest[i]=src[i];
@@ -65,6 +65,25 @@ int String::strcmp(const char *left, const char *right){
 	}
 	return left[i]-right[i];
 }
+
+char* String::strcat(char *dest, const char *src){
+	int i=0;
+	while(dest[i]!='\0'){
+		++i;
+	}
+	strcpy(dest + i, src);
+	return dest;
+}
+
+char* String::strncat(char *dest, const char *src, int n){
+	int i=0;
+	while(dest[i]!='\0'){
+		++i;
+	}
+	strncpy(dest + i, src, n);
+	return dest;
+}
+	
 
 String::String(const char *s){
 	strncpy(buf, s, MAXLEN-1);
