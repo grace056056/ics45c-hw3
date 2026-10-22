@@ -137,6 +137,19 @@ int String::size() const{
 	return strlen(buf);
 }
 
+void String::reverse_cpy(char *dest, const char *src){
+    int len = strlen(src);
+    for (int i = 0; i < len; ++i)
+        dest[i] = src[len - 1 - i];
+    dest[len] = '\0';
+}
+
+String String::reverse() const {
+    String result;
+    reverse_cpy(result.buf, buf);
+    return result;
+}
+
 void String::print(std::ostream &out) const{
 	out<<buf;
 }

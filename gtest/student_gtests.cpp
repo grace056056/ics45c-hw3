@@ -140,8 +140,30 @@ TEST(StringFunction, strncmp) {
     EXPECT_LT(String::strcmp("A", "a"), 0);  
 }
 
-TEST(StringFunction, reverse_cpy) {
-    EXPECT_TRUE(false);
+TEST(StringFunction, reverse_cpy){
+    char r1[20];
+    String::reverse_cpy(r1, "abc");
+    EXPECT_STREQ(r1, "cba");
+
+    char r2[20];
+    String::reverse_cpy(r2, "");
+    EXPECT_STREQ(r2, "");
+
+    char r3[20];
+    String::reverse_cpy(r3, "a");
+    EXPECT_STREQ(r3, "a");
+
+    char r4[20];
+    String::reverse_cpy(r4, "ab");
+    EXPECT_STREQ(r4, "ba");
+
+    char r5[20];
+    String::reverse_cpy(r5, "racecar");
+    EXPECT_STREQ(r5, "racecar");
+
+    char r6[20];
+    String::reverse_cpy(r6, "hi, you!");
+    EXPECT_STREQ(r6, "!uoy ,ih");
 }
 
 TEST(StringFunction, strchr) {
