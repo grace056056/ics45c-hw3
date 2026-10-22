@@ -2,6 +2,36 @@
 #include "string.hpp"
 using namespace std;
 
+
+bool String::operator==(const String &s) const {
+    return strcmp(buf, s.buf) == 0;
+}
+
+bool String::operator!=(const String &s) const {
+    return strcmp(buf, s.buf) != 0;
+}
+
+bool String::operator<(const String &s) const {
+    return strcmp(buf, s.buf) < 0;
+}
+
+bool String::operator>(const String &s) const {
+    return strcmp(buf, s.buf) > 0;
+}
+
+bool String::operator<=(const String &s) const {
+    return strcmp(buf, s.buf) <= 0;
+}
+
+bool String::operator>=(const String &s) const {
+    return strcmp(buf, s.buf) >= 0;
+}
+
+String &String::operator=(const String &s) {
+    strcpy(buf, s.buf);
+    return *this;
+}
+
 int String::strlen(const char *s){
 	int len = 0;
 	while (s[len]!='\0'){
