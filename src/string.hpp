@@ -45,7 +45,7 @@ public:
 	static char *strcpy(char *dest, const char *src);
 	static char *strncpy(char *dest, const char *src, int n);
 	static char *strcat(char *dest, const char *src);
-	static char *strncat(char *dest, const char *src);
+	static char *strncat(char *dest, const char *src, int n );
 	static int strcmp(const char *left, const char *right);
 	static int strncmp(const char *left, const char *right, int n);
 	static void reverse_cpy(char *dest, const char *src);
